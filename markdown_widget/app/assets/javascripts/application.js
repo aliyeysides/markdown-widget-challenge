@@ -17,9 +17,53 @@
 
 
 $(document).ready(function(){
+
   $('#source').bind('keyup', function(event) {
-    var source = $('#source').val()
-    console.log(source.split(""))
-    $('#preview').html($('#source').val())
+    var source = $('#source').val();
+    var isItalic = false;
+    var new_source = [];
+    split_source = source.split("");
+
+    for (letter in split_source){
+      if (split_source[letter] == '*' && isItalic==false){
+          isItalic = true;
+          new_source.push('<i>')
+      } else if (split_source[letter]=='*' &&isItalic==true){
+          isItalic = false;
+          new_source.push('</i>');
+      } else {
+          new_source.push(split_source[letter])
+      }
+    }
+    console.log(new_source.join(''))
+    $('#preview').html(new_source.join(''))
+
+    function italic(source){
+
+      if (isItalic == false){
+        source = source.replace("*", "<i>")
+        isItalic = true
+        $('#preview').html(source)
+      }
+      else
+        source = source.replace("*", "</i>")
+        isItalic = false
+        $('#preview').html(source)
+    }
+
+
+
+    // var style = null;
+    // for (letter in split_source){
+    //   if (split_source[letter] == '*' || split_source[letter] == '_'){
+    //     style = 'italic'
+    //   }
+
+      // if(split_source[letter+1] =='*' || split_source[letter+1] =='_'{
+      //   style = 2
+      // }
+    // }
+
+    // $('#preview').html(source)
   })
 })
