@@ -28,9 +28,10 @@ $(document).ready(function(){
       if (split_source[letter] == '*' && isItalic==false){
           isItalic = true;
           new_source.push('<i>')
-      } else if (split_source[letter]=='*' &&isItalic==true){
+      } else if (split_source[letter]=='*' && isItalic==true){
           isItalic = false;
           new_source.push('</i>');
+
       } else {
           new_source.push(split_source[letter])
       }
