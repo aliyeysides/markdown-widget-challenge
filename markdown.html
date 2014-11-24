@@ -11,21 +11,4 @@
 
 		<textarea id="source"></textarea>
 	</body>
-	<script>
-			function appendHtml(str){
-				console.log(String.fromCharCode(str));
-
-				var character = String.fromCharCode(str);
-				document.getElementById("preview").innerHTML+=character;
-					// preview.innerHTML = character;
-					// preview.appendChild(character);
-			};
-
-
-			document.getElementById("source").onkeyup=function(e){
-					console.log(e.keyCode);
-					var str = e.keyCode;
-					appendHtml(str);
-			};
-	</script>
 </html>

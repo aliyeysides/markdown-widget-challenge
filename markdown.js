@@ -1,17 +1,15 @@
-function pageLoad(){
-	function appendHtml(preview, str){
-			console.log("appending");
-
+widget = function(){
+	function appendHtml(str){
 		var character = String.fromCharCode(str);
-		// preview.innerHTML = character;
-		preview.appendChild(character);
+		document.getElementById("preview").innerHTML+=character;
 	};
 
-	var preview = document.getElementById("preview");
 
-	document.getElementById("source").onkeyup(function(e){
-		console.log("Key Up");
-		var str = e.keycode;
-		appendHtml(preview, str);
-	});
+	document.getElementById("source").onkeyup=function(e){
+		console.log(e.keyCode);
+		var str = e.keyCode;
+		appendHtml(str);
+	};
 };
+
+window.addEventListener('load', widget);
