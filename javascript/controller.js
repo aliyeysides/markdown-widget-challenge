@@ -5,65 +5,79 @@ $(document).ready(function() {
 
   $(".text_input").keyup(function(event) {
     var new_text = event.target.value;
-    var fixed = Model.findStrongs(new_text);
-    // var fixed = Model.fixItalicsStars(fixed);
-    // var fixed = Model.fixItalicsUnders(fixed);
+    var fixed = Model.fixStrongs(new_text);
+    View.renderLiveText(fixed);
+    fixed = Model.fixItalicsStars(fixed);
+    View.renderLiveText(fixed);
+    fixed = Model.fixItalicsUnders(fixed);
     View.renderLiveText(fixed);
   });
+
 
 
 })
 
 
 Model = {
-  findStrongs: function(text) {
+  fixStrongs: function(text) {
     var textString = text.toString();
-    var textArray = textString.match(/\*\*[a-zA-Z]+?\*\*/gi);
+    var textArray = textString.match(/\*\*[\S\s]+?\*\*/gi);
     var fixedMatches = [];
+    if(textArray != null) {
+      for(i = 0; i < textArray.length; i++) {
+        fixedMatches[i] = textArray[i].replace(/\*\*/, "<strong>");
+        fixedMatches[i] = fixedMatches[i].replace(/\*\*/, "</strong>");
 
-    for(i = 0; i < textArray.length; i++) {
-      fixedMatches[i] = textArray[i].replace(/\*\*/, "<strong>");
-      fixedMatches[i] = fixedMatches[i].replace(/\*\*/, "</strong>");
+      }
+      console.log("Fixed matches:")
+      console.log(fixedMatches);
 
+      for(i = 0; i < fixedMatches.length; i++) {
+        textString = textString.replace(textArray[i], fixedMatches[i]);
+      }
     }
-    console.log(fixedMatches);
 
-    var freshText;
-      // textString.replace(textArray[i], fixedMatches[i]);
-    for(i = 0; i < fixedMatches.length; i++) {
-      freshText = textString.replace(textArray[i], fixedMatches[i]);
-    }
-    console.log(freshText);
-    // console.log(textWithClosedStrong)
-    return freshText;
+    return textString;
   },
 
 
-  fixStrongs: function(text) {
+  fixItalicsStars: function(text) {
+    var textString = text.toString();
+    var textArray = textString.match(/\*[\S\s]+?\*/gi);
+    var fixedMatches = [];
+    if(textArray != null) {
+      for(i = 0; i < textArray.length; i++) {
+        fixedMatches[i] = textArray[i].replace(/\*/, "<em>");
+        fixedMatches[i] = fixedMatches[i].replace(/\*/, "</em>");
 
+      }
+      console.log("Fixed matches:")
+      console.log(fixedMatches);
+
+      for(i = 0; i < fixedMatches.length; i++) {
+        textString = textString.replace(textArray[i], fixedMatches[i]);
+      }
+    }
+    return textString;
+  },
+  fixItalicsUnders: function(text){
+    var textString = text.toString();
+    var textArray = textString.match(/_[\S\s]+?_/gi);
+    var fixedMatches = [];
+    if(textArray != null) {
+      for(i = 0; i < textArray.length; i++) {
+        fixedMatches[i] = textArray[i].replace(/_/, "<em>");
+        fixedMatches[i] = fixedMatches[i].replace(/_/, "</em>");
+
+      }
+      console.log("Fixed matches:")
+      console.log(fixedMatches);
+
+      for(i = 0; i < fixedMatches.length; i++) {
+        textString = textString.replace(textArray[i], fixedMatches[i]);
+      }
+    }
+    return textString;
   }
-
-  // fixItalicsStars: function(text){
-  //   var textString = text.toString();
-  //   // var textArray = textString.match(/\*\*[a-zA-Z]+?\*\*/gi)
-  //   // var newString = textArray[0]
-
-  //   var textWithOpenStrong = textString.replace("*", "<em>")
-  //   var textWithClosedStrong = textWithOpenStrong.replace("*", "</em>")
-
-  //   console.log(textWithClosedStrong)
-  //   return textWithClosedStrong;
-  // },
-  // fixItalicsUnders: function(text){
-  //   var textString = text.toString();
-  //   // var textArray = textString.match(/\*\*[a-zA-Z]+?\*\*/gi)
-  //   // var newString = textArray[0]
-
-  //   var textWithOpenStrong = textString.replace("_", "<em>")
-  //   var textWithClosedStrong = textWithOpenStrong.replace("_", "</em>")
-
-  //   console.log(textWithClosedStrong)
-  //   return textWithClosedStrong;
-  // }
 
 }
