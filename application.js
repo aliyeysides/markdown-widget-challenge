@@ -6,8 +6,8 @@ $(document).ready(function() {
     string = []
     for(var j = 0; j < array.length; j++){
       console.log(array[j])
-      string.push(new StringFormatter(array[j]).italic());
+      string.push(new StringFormatter(array[j]).logic());
     }
-    $('#preview').html(string.join("<br>"));
+    $('#preview').html(string.join("\n"));
   });
 });
