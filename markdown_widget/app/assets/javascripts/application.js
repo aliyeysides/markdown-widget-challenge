@@ -1,3 +1,11 @@
+
+Controller
+
+Viewer
+
+Model
+
+
 $(document).ready(function(){
 
   $('#source').bind('keyup', function(event) {
@@ -18,12 +26,12 @@ $(document).ready(function(){
               isItalic = false;
               new_source.push('</i>');
 
-          } 
+          }
           else if (split_source[word]=='**' && isBold==false){
               isBold = true;
               new_source.push('<strong>');
 
-          } 
+          }
           else if (split_source[word]=='**' && isBold==true){
               isBold = false;
               new_source.push('</strong>');
@@ -38,3 +46,5 @@ $(document).ready(function(){
     });
   })
 })
+
+
