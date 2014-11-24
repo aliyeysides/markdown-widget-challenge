@@ -1,7 +1,12 @@
 $(document).ready(function() {
 	$('#markdown').on('keyup', (function(event) {
-		var content = $('#herp').val();
-		console.log(content);
-		$('#derp').append(content);
+		$content = $('#herp').val();
+		
+		console.log($content);
+		startItalic = /^_/;
+		endItalic = /_$/;
+			if (startItalic.test($content) === endItalic.test($content)) {
+				$('#derp').replaceWith("mookie")
+			}
 	}));
 });
