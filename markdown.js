@@ -1,14 +1,15 @@
 widget = function(){
-	function appendHtml(str){
-		var character = String.fromCharCode(str);
-		document.getElementById("preview").innerHTML+=character;
+	function appendHtml(html){
+		// var character = String.fromCharCode(str);
+		document.getElementById("preview").innerHTML=html;
 	};
 
 
 	document.getElementById("source").onkeyup=function(e){
-		console.log(e.keyCode);
-		var str = e.keyCode;
-		appendHtml(str);
+		console.log(e);
+		// var str = e.keyCode;
+		var textarea = e.target;
+		appendHtml(textarea.value);
 	};
 };
 
