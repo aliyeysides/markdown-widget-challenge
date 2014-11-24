@@ -5,11 +5,27 @@
 	</head>
 		<h1>Corey and Rebecca's Markdown Awesomesauce</h1>
 	<body>
-
 		<div id="preview">
 			<p id="markdown-text"></p>
 		</div>
 
 		<textarea id="source"></textarea>
 	</body>
+	<script>
+			function appendHtml(str){
+				console.log(String.fromCharCode(str));
+
+				var character = String.fromCharCode(str);
+				document.getElementById("preview").innerHTML=character;
+					// preview.innerHTML = character;
+					// preview.appendChild(character);
+			};
+
+
+			document.getElementById("source").onkeyup=function(e){
+					console.log(e.keyCode);
+					var str = e.keyCode;
+					appendHtml(str);
+			};
+	</script>
 </html>
