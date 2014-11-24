@@ -5,7 +5,7 @@ widget = function(){
 
 	document.getElementById("source").onkeyup=function(e){
 		var textarea = e.target;
-		appendHtml(textarea.value);
+		appendHtml(markdown.toHTML(textarea.value));
 	};
 };
 
