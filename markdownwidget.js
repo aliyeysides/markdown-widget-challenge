@@ -67,8 +67,6 @@ MDWidget.MarkedbasedMarkdownParser.prototype = {
 
 /* ------------------------------------------------------------------------------- */
 
-$(function() {
-  new MDWidget.Controller(
-    new MDWidget.MDInputView("textarea#input"),
-    new MDWidget.MDOutputView("div#output"));
-});
+new MDWidget.Controller(
+  new MDWidget.MDInputView("textarea#input"),
+  new MDWidget.MDOutputView("div#output"));
