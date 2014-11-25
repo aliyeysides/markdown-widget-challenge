@@ -3,14 +3,11 @@ window.MDWidget = {};
 /* ------------------------------------------------------------------------------- */
 
 MDWidget.MDInputView = function(sel) {
-  var view = this;
-
   this.$sel = $(sel);
 
   this.$sel.on('keyup', function(e) {
-    console.log($(e.target).text() );
-    view.markdownTextChanged($(e.target).val());
-  });
+    this.markdownTextChanged($(e.target).val());
+  }.bind(this));
 };
 
 MDWidget.MDInputView.prototype = {
